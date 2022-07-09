@@ -1,0 +1,145 @@
+
+<!-- saved from url=(0071)file:///C:/Users/w8452/Desktop/project%203/CS%20415_%20Project%203.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CS 415: Project 3</title>
+<style type="text/css">
+h1 { background:#aabbbb }
+h2 { background:#aabbbb }
+h3 { background:#dddddd }
+</style></head>
+
+
+
+<body bgcolor="white">
+<br>
+<hr>
+<center>
+<h1>
+ Project 3: Local Common Subexpression Elimination <br> 
+ Due date: Wednesday, May 8 
+</h1>
+</center>
+<hr>
+
+<h2>Clarifications and Modifications</h2> 
+<ul>
+  <li> nothing at this point
+</li></ul>
+
+<h2>Subset of Language used in Project 2</h2> 
+
+The language used for this project is a strict subset of the language
+used in project 2. The language for project 3 supports only integer
+types, has only scalar variables, limits the form variable
+declarations, and supports only assignment and print statements.
+In other words, every program in this language is a basic block. 
+
+There is also a limited set of ILOC instructions the compiler can
+generate: ADD, SUB, MULT, LOADI, LOADAI, STOREAI, OUTPUTAI.  
+
+<h2>Project Description</h2> 
+
+<p>  
+You are asked to implement local (basic block) common subexpression
+elimination using virtual register numbers as value numbers. 
+Using the algorithm discussed in class, you will build signatures
+and hash them in order to detect whether particular ILOC instructions
+are redundant or not. 
+The common subexpression detection is done as part of the <b> emit </b> function.
+If an ILOC instruction is redundant, the generation of the instruction
+is surpressed, and the virtual
+register number (i.e., value number) of the register that contains the
+already computed value is used instead. 
+You will need to implement a signature hash function and supporting
+infrastructure in files <b>valnum.h</b> and <b>valnum.c</b>. <br><br>
+
+The project is designed to be a stand-alone project, i.e., you don't
+need a solution of project 2 to work on project 3. However, the basic
+structure of the two projects is the same, so you could integrate the
+two projects. In also should make understanding the overall
+infrastructure easier.
+
+<br><br> 
+ 
+ 
+</p><hr> 
+<h2> Getting Started</h2> 
+ 
+The following code is provided as a starting point for your 
+project. The files listed below live on the ilab cluster in
+subdirectory
+<b><i> ~uli/cs415/projects/proj3 </i></b>. Please copy the
+files
+into your subdirectory of choice using the command <br> 
+<i> cp -r ~uli/cs415/projects/proj3 myProjectSubdirectory </i>.
+You may modify files for your project according to the following guideline.
+ 
+<ol> 
+<li> attr.h and attr.c: Not really needed for this project, but still there to be
+  consistent with project 2. There is no type checking in project 3.    
+     <br> 
+</li><li> symtab.h and symtab.c: Only offset of variables is interesting for
+  this project.  
+</li><li> Scanner: scan.l (flex); do not modify; simplified over project 2. 
+</li><li> Parser: parse.y (bison); do not modify; simplified over project 2. 
+</li><li> Makefile; do not modify; added valnum.h and valnum.c
+</li><li> instrutil.h and instrutil.c: definition of emit needs to be
+  extended for the optimization case
+</li><li> valnum.h an valnum.c : this is where you implement the signature
+  hash function
+</li><li> There are a few test programs in subdirectory "testcases"; 
+     we may post a sample solution later
+</li></ol> 
+ 
+You can generate an executable called <b> codegen </b> by  
+typing <i> make </i>. The executable codegen expects the input on 
+stdin.
+
+In order to allow for testing and comparisons, codegen can be called two different
+ways:
+<ul>
+  <li>   ./codegen &lt; demo : this invokes the unoptimizing compiler which is
+         provided to you
+  </li><li>  ./codegen -O &lt; demo : this invokes your cse optimizing 
+         compiler. This version will use your "optimized" version of <b>emit</b>. 
+</li></ul>
+
+ 
+<br><br> 
+
+<hr> 
+<h2> Due Date </h2>  
+The project is due at <b>11:59 pm on Wednesday May 8,  
+2019</b>--that is, one minute before midnight. 
+<p> 
+If you have specific, overriding, 
+personal reasons why these dates are unreasonable, you should discuss 
+them directly with the instructor <b>before</b> the deadline. 
+
+<br><br> 
+There may only be a limited late submission possible.
+If late submission is possible, our standard policly of 20% penalty per starting 24 hours applies.
+<br><br> 
+ 
+
+</p><hr> 
+<h2>Submission Procedure</h2> 
+Please see sakai.
+<br><br> 
+
+<hr> 
+<h2>Grading Criteria</h2> 
+ 
+
+All test cases will be syntactically and semantically correct. 
+The project will be mainly graded on functionality. You will receive 
+<font color="red"> no credit </font> for the entire project if your  
+code does not compile and run on the  <b> ilab
+cluster </b>. 
+ 
+ 
+ 
+ 
+
+
+</body></html>
